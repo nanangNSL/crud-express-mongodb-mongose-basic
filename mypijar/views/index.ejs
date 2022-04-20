@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2 class="text-center">CRUD DATA PIJARCAMP EXPRESS-JS</h2>
+      <div class="row mt-3">
+        <!-- Alert -->
+        <div class="col-auto col-lg-12 mt-2">
+          <% if(alert.message != "") { %>
+          <div class="alert alert-<%= alert.status %>" role="alert">
+            <%= alert.message %>
+          </div>
+          <% } %>
+        </div>
+        <!-- Table -->
+        <div class="col-auto col-lg-12 mt-2"><%- include('table.ejs') %></div>
+      </div>
+    </div>
+    <!-- Add Modal -->
+    <%- include('add_modal.ejs') %>
+    <%- include('edit_modal.ejs') %>
+    <!-- JS -->
+    <%- include('js.ejs') %>
+
+    <script>
+      /* Menampilkan modal dan memanggil tag table yang memiliki id dataTable
+         class button-update di class tag a Edit di file table.ejs */
+      $("#dataTable").on("click", ".button-update", function () {
+        // membuat variabel untuk mengambil data-id, data-name, dstnya yang sudah dibuat di file table.ejs di bagian tag a edit
+        let id = $(this).data("id");
+        let produk = $(this).data("produk");
+        let keterangan = $(this).data("keterangan");
+        let harga = $(this).data("harga");
+        let jumlah = $(this).data("jumlah");
+        /*
+         * memanggil id edit-modal yang ada di file edit_modal.ejs
+         * dan membuat fungsi dari method
+         */
+        $("#edit-modal").modal("show");
+        /* Lalu Mengirim  id, name, dstnya melalu class disamping form-control tag input
+           dan valuenya mengambil dari setiap let yang dideklarasikan di atas */
+        $(".id").val(id);
+        $(".produk").val(produk);
+        $(".keterangan").val(keterangan);
+        $(".harga").val(harga);
+        $(".jumlah").val(jumlah);
+      });
+    </script>
+  </body>
+</html>

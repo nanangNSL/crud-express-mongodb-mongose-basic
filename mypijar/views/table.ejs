@@ -1,0 +1,62 @@
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-outline-primary btn-sm"
+      data-toggle="modal"
+      data-target="#add-modal"
+    >
+      Add
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table
+        class="table table-bordered"
+        id="dataTable"
+        width="100%"
+        cellspacing="0"
+      >
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Produk</th>
+            <th>Keterangan</th>
+            <th>Harga</th>
+            <th>Jumlah</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let i = 0; i < pijarcamp.length; i++){ %>
+          <tr>
+            <td><%= i +1 %></td>
+            <td><%= pijarcamp[i].produk %></td>
+            <td><%= pijarcamp[i].keterangan %></td>
+            <td><%= pijarcamp[i].harga %></td>
+            <td><%= pijarcamp[i].jumlah %></td>
+            <td class="text-center">
+              <form action="/pijarcamp/<%= pijarcamp[i].id %>?_method=DELETE" method="POST" >
+
+              <a href="javascript:void()"
+                class="btn btn-outline-warning btn-sm button-update"
+                data-id="<%= pijarcamp[i].id %>"
+                data-produk="<%= pijarcamp[i].produk %>"
+                data-keterangan="<%= pijarcamp[i].keterangan %>"
+                data-harga="<%= pijarcamp[i].harga %>"
+                data-jumlah="<%= pijarcamp[i].jumlah %>"
+              >Edit</a>
+              <button type="submit" class="btn btn-outline-danger btn-sm">
+                Delete
+              </button>
+            </form>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
